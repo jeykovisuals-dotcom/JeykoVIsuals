@@ -428,14 +428,15 @@ document.querySelectorAll(
 function initCardBreakout() {
   if (window.matchMedia('(max-width: 768px)').matches) return;
 
-  const MAX_TILT  = 14;
-  const IMG_DEPTH = 80;
-  const IMG_SCALE = 1.12;
+  const MAX_TILT  = 12;
+  const IMG_DEPTH = 65;
+  const IMG_SCALE = 1.08;
 
-  document.querySelectorAll('.bento-card').forEach(card => {
-    const img = card.querySelector('.bento-card__visual img, .bento-card__visual video');
+  document.querySelectorAll('.bento-card, .service-card').forEach(card => {
+    const img  = card.querySelector('.bento-card__visual img, .bento-card__visual video, .bento-card__placeholder');
+    const icon = card.querySelector('.service-card__icon');
 
-    // Glare de la card
+    // Glare holografico reflectivo de la card
     const glare = document.createElement('div');
     glare.className = 'bento-card__glare';
     card.appendChild(glare);
@@ -451,18 +452,28 @@ function initCardBreakout() {
       cRY = lerp(cRY, tRY, spd);
 
       card.style.transform =
-        `perspective(1000px) rotateX(${cRX}deg) rotateY(${cRY}deg) scale(${hovered ? 1.015 : 1})`;
+        `perspective(1000px) rotateX(${cRX}deg) rotateY(${cRY}deg) scale(${hovered ? 1.02 : 1})`;
 
       if (img) {
-        const depth = hovered ? IMG_DEPTH  : 0;
-        const sc    = hovered ? IMG_SCALE  : 1;
-        const sdX   = (-cRY * 1.5).toFixed(1);
-        const sdY   = ( cRX * 1.5).toFixed(1);
+        const depth = hovered ? IMG_DEPTH : 20;
+        const sc    = hovered ? IMG_SCALE : 1;
+        const sdX   = (-cRY * 1.8).toFixed(1);
+        const sdY   = ( cRX * 1.8).toFixed(1);
         const sha   = hovered
-          ? `drop-shadow(${sdX}px ${sdY}px 35px rgba(0,0,0,0.45))`
-          : 'drop-shadow(0 0 0 transparent)';
+          ? `drop-shadow(${sdX}px ${sdY}px 32px rgba(0,0,0,0.75))`
+          : 'drop-shadow(0 10px 22px rgba(0,0,0,0.4))';
         img.style.transform = `translateZ(${depth}px) scale(${sc})`;
         img.style.filter    = sha;
+      }
+
+      if (icon) {
+        const iDepth = hovered ? 35 : 10;
+        const iSdX   = (-cRY * 1.2).toFixed(1);
+        const iSdY   = ( cRX * 1.2).toFixed(1);
+        icon.style.transform = `translateZ(${iDepth}px)`;
+        icon.style.filter    = hovered
+          ? `drop-shadow(${iSdX}px ${iSdY}px 22px rgba(41,151,255,0.75))`
+          : 'drop-shadow(0 0 16px rgba(41,151,255,0.4))';
       }
 
       const diff = Math.abs(cRX - tRX) + Math.abs(cRY - tRY);
@@ -472,7 +483,8 @@ function initCardBreakout() {
     card.addEventListener('mouseenter', () => {
       hovered = true;
       card.style.transition = 'none';
-      if (img) img.style.transition = 'none';
+      if (img)  img.style.transition = 'none';
+      if (icon) icon.style.transition = 'none';
       if (!raf) tick();
     });
 
@@ -486,7 +498,7 @@ function initCardBreakout() {
       const gx = ((rx + 0.5) * 100).toFixed(1);
       const gy = ((ry + 0.5) * 100).toFixed(1);
       glare.style.background =
-        `radial-gradient(circle at ${gx}% ${gy}%, rgba(255,255,255,0.28) 0%, transparent 62%)`;
+        `radial-gradient(circle at ${gx}% ${gy}%, rgba(255,255,255,0.22) 0%, transparent 62%)`;
       glare.style.opacity = '1';
     });
 
@@ -495,7 +507,10 @@ function initCardBreakout() {
       tRX = 0; tRY = 0;
       glare.style.opacity = '0';
       if (img) {
-        img.style.transition = 'transform 0.65s cubic-bezier(0.4,0,0.2,1), filter 0.65s cubic-bezier(0.4,0,0.2,1)';
+        img.style.transition = 'transform 0.65s cubic-bezier(0.16,1,0.3,1), filter 0.65s cubic-bezier(0.16,1,0.3,1)';
+      }
+      if (icon) {
+        icon.style.transition = 'transform 0.65s cubic-bezier(0.16,1,0.3,1), filter 0.65s cubic-bezier(0.16,1,0.3,1)';
       }
       if (!raf) tick();
     });

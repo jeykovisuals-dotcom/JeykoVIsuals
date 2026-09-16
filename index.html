@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Portafolio profesional de Jeyko Ronquillo &mdash; Dise&ntilde;o Gr&aacute;fico, Edici&oacute;n de Video y Motion Graphics." />
   <title>Jeyko Visuals | Portafolio</title>
+  <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -22,7 +24,9 @@
   <header class="site-header" id="site-header">
     <nav class="nav" aria-label="Navegaci&oacute;n principal">
       <a href="#inicio" class="nav__logo" aria-label="Inicio &mdash; Jeyko Visuals">
-        <span class="nav__logo-mark">JV</span>
+        <span class="nav__logo-badge">
+          <img src="assets/img/logo.png" alt="Logo Jeyko Visuals" class="nav__logo-img" width="34" height="34" />
+        </span>
         <span class="nav__logo-text">Jeyko Visuals</span>
       </a>
       <ul class="nav__links" role="list">
@@ -57,8 +61,8 @@
         <div class="hero__slide" style="background-image: url('assets/img/ea-fc27.jpg');" data-project="EA Sports FC 27"></div>
         <div class="hero__slide" style="background-image: url('assets/img/nescafe.jpg');" data-project="Nescaf&eacute; Cl&aacute;sico"></div>
         <div class="hero__slide" style="background-image: url('assets/img/7up.jpg');" data-project="7UP Lemon Lime"></div>
-        <div class="hero__slide" style="background-image: url('https://drive.google.com/uc?export=view&id=1LdmaNLaLr1pdMt9jwlr_r24Q3dSisip9');" data-project="Lionel Messi"></div>
-        <div class="hero__slide" style="background-image: url('https://drive.google.com/uc?export=view&id=1rtfH61K6bVDP6GE_r8zwgblvXi06uV3p');" data-project="Tyler"></div>
+        <div class="hero__slide" style="background-image: url('assets/img/messi.jpg');" data-project="Lionel Messi"></div>
+        <div class="hero__slide" style="background-image: url('assets/img/tyler.jpg');" data-project="Tyler"></div>
 
         <!-- Video de fondo opcional (si se coloca assets/video/hero-bg.mp4) -->
         <video
@@ -151,6 +155,11 @@
          Efecto 3D Breakout interactivo con Mouse Tracking
     ============================================================ -->
     <section class="projects" id="proyectos" aria-labelledby="projects-title">
+      <!-- Fondo cinematografico con atardecer y overlay -->
+      <div class="section__bg" aria-hidden="true">
+        <div class="section__bg-image" style="background-image: url('assets/img/sunset-bg.jpg');"></div>
+        <div class="section__bg-overlay"></div>
+      </div>
       <div class="section-header">
         <p class="section-label">Trabajos seleccionados</p>
         <h2 class="section-title" id="projects-title">Proyectos</h2>
@@ -158,8 +167,8 @@
 
       <div class="bento-grid" role="list">
 
-        <!-- CARD 1: Motion Graphics - ocupa 2 filas (card--tall) -->
-        <article class="bento-card card--tall" role="listitem"
+        <!-- CARD 1: Motion Graphics -->
+        <article class="bento-card" role="listitem"
           data-category="Motion Graphics"
           data-title="Identidad Animada de Marca"
           data-year="2025"
@@ -218,8 +227,8 @@
           </div>
         </article>
 
-        <!-- CARD 3: Diseno Grafico - AXE Marine (card--wide) -->
-        <article class="bento-card card--wide" role="listitem"
+        <!-- CARD 3: Diseno Grafico - AXE Marine -->
+        <article class="bento-card" role="listitem"
           data-category="Dise&ntilde;o Gr&aacute;fico"
           data-title="AXE Marine &mdash; Pieza Publicitaria"
           data-year="2025"
@@ -276,8 +285,8 @@
           </div>
         </article>
 
-        <!-- CARD 5: Diseno Grafico - Nescafe (card--wide) -->
-        <article class="bento-card card--wide" role="listitem"
+        <!-- CARD 5: Diseno Grafico - Nescafe -->
+        <article class="bento-card" role="listitem"
           data-category="Dise&ntilde;o Gr&aacute;fico"
           data-title="Nescaf&eacute; Cl&aacute;sico &mdash; Publicidad"
           data-year="2025"
@@ -334,20 +343,19 @@
           </div>
         </article>
 
-        <!-- CARD 7: Diseno Grafico - Messi (card--wide) -->
-        <article class="bento-card card--wide" role="listitem"
+        <!-- CARD 7: Diseno Grafico - Messi -->
+        <article class="bento-card" role="listitem"
           data-category="Dise&ntilde;o Gr&aacute;fico"
           data-title="Messi &mdash; Pieza Editorial"
           data-year="2025"
           data-problem="Se buscaba crear una pieza gr&aacute;fica de alto impacto que capturara la esencia y legado del mejor futbolista de la historia."
           data-solution="Composici&oacute;n editorial con tratamiento fotogr&aacute;fico cinematogr&aacute;fico, paleta crom&aacute;tica dorada y tipograf&iacute;a de impacto para resaltar la figura del astro."
           data-tools="Photoshop,Lightroom"
-          data-image="https://drive.google.com/uc?export=view&id=1LdmaNLaLr1pdMt9jwlr_r24Q3dSisip9"
+          data-image="assets/img/messi.jpg"
           data-link="https://drive.google.com/file/d/1LdmaNLaLr1pdMt9jwlr_r24Q3dSisip9/view?usp=drive_link"
           tabindex="0" aria-label="Ver detalle: Messi Pieza Editorial">
           <div class="bento-card__visual">
-            <img src="https://drive.google.com/uc?export=view&id=1LdmaNLaLr1pdMt9jwlr_r24Q3dSisip9"
-                 alt="Pieza editorial de Lionel Messi" loading="lazy" />
+            <img src="assets/img/messi.jpg" alt="Pieza editorial de Lionel Messi" loading="lazy" />
           </div>
           <div class="bento-card__info">
             <div class="bento-card__meta">
@@ -372,12 +380,11 @@
           data-problem="Se requer&iacute;a una pieza gr&aacute;fica que transmitiera la est&eacute;tica &uacute;nica y el universo visual del artista Tyler, the Creator."
           data-solution="Composici&oacute;n con paleta crom&aacute;tica vibrante, collage de elementos visuales y tipograf&iacute;a experimental que refleja la identidad art&iacute;stica del m&uacute;sico."
           data-tools="Photoshop,Illustrator"
-          data-image="https://drive.google.com/uc?export=view&id=1rtfH61K6bVDP6GE_r8zwgblvXi06uV3p"
+          data-image="assets/img/tyler.jpg"
           data-link="https://drive.google.com/file/d/1rtfH61K6bVDP6GE_r8zwgblvXi06uV3p/view?usp=drive_link"
           tabindex="0" aria-label="Ver detalle: Tyler Arte Visual">
           <div class="bento-card__visual">
-            <img src="https://drive.google.com/uc?export=view&id=1rtfH61K6bVDP6GE_r8zwgblvXi06uV3p"
-                 alt="Arte visual inspirado en Tyler the Creator" loading="lazy" />
+            <img src="assets/img/tyler.jpg" alt="Arte visual inspirado en Tyler the Creator" loading="lazy" />
           </div>
           <div class="bento-card__info">
             <div class="bento-card__meta">
@@ -401,6 +408,11 @@
          SERVICIOS
     ============================================================ -->
     <section class="services" id="servicios" aria-labelledby="services-title">
+      <!-- Fondo cinematografico con atardecer y overlay -->
+      <div class="section__bg" aria-hidden="true">
+        <div class="section__bg-image" style="background-image: url('assets/img/sunset-bg.jpg');"></div>
+        <div class="section__bg-overlay"></div>
+      </div>
       <div class="section-header">
         <p class="section-label">&iquest;Qu&eacute; ofrezco?</p>
         <h2 class="section-title" id="services-title">Servicios</h2>
@@ -428,9 +440,16 @@
          SOBRE MI
     ============================================================ -->
     <section class="about" id="sobre-mi" aria-labelledby="about-title">
+      <!-- Fondo cinematografico con atardecer y overlay -->
+      <div class="section__bg" aria-hidden="true">
+        <div class="section__bg-image" style="background-image: url('assets/img/sunset-bg.jpg');"></div>
+        <div class="section__bg-overlay"></div>
+      </div>
       <div class="about__inner">
         <div class="about__visual">
-          <div class="about__photo-placeholder" aria-hidden="true"><span>JR</span></div>
+          <div class="about__photo-card">
+            <img src="assets/img/logo.png" alt="Insignia oficial Jeyko Visuals" class="about__photo-img" />
+          </div>
           <div class="about__stat-card">
             <div class="stat">
               <strong class="stat__num">+20</strong>
@@ -463,6 +482,11 @@
          Plataformas incluidas: GitHub, Email, Behance, Fiverr.
     ============================================================ -->
     <section class="contact" id="contacto" aria-labelledby="contact-title">
+      <!-- Fondo cinematografico con atardecer y overlay -->
+      <div class="section__bg" aria-hidden="true">
+        <div class="section__bg-image" style="background-image: url('assets/img/sunset-bg.jpg');"></div>
+        <div class="section__bg-overlay"></div>
+      </div>
       <div class="contact__inner">
         <p class="section-label">&iquest;Tienes un proyecto?</p>
         <h2 class="section-title" id="contact-title">Trabajemos juntos.</h2>
@@ -507,6 +531,14 @@
 
   <!-- FOOTER -->
   <footer class="site-footer">
+    <div class="footer__brand">
+      <a href="#inicio" class="footer__logo" aria-label="Volver arriba &mdash; Jeyko Visuals">
+        <span class="footer__logo-badge">
+          <img src="assets/img/logo.png" alt="Logo Jeyko Visuals" class="footer__logo-img" width="40" height="40" />
+        </span>
+        <span class="footer__logo-text">Jeyko Visuals</span>
+      </a>
+    </div>
     <p>&#169; <span id="footer-year"></span> Jeyko Visuals &#8212; Jeyko Ronquillo. Todos los derechos reservados.</p>
   </footer>
 
