@@ -1,0 +1,13 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <rect width="120" height="120" rx="26" fill="#141418"/>
+  <g transform="translate(60,60)">
+    <!-- 3 Petals / Pinwheels of DaVinci Resolve -->
+    <path d="M0,0 L0,-40 A40,40 0 0,1 34.64,-20 Z" fill="#eb2f2f"/>
+    <path d="M0,0 L34.64,-20 A40,40 0 0,1 34.64,20 Z" fill="#f7981d"/>
+    <path d="M0,0 L34.64,20 A40,40 0 0,1 0,40 Z" fill="#1db5f7"/>
+    <path d="M0,0 L0,40 A40,40 0 0,1 -34.64,20 Z" fill="#3b78f0"/>
+    <path d="M0,0 L-34.64,20 A40,40 0 0,1 -34.64,-20 Z" fill="#2eb85c"/>
+    <path d="M0,0 L-34.64,-20 A40,40 0 0,1 0,-40 Z" fill="#ff4d4d"/>
+    <circle cx="0" cy="0" r="14" fill="#141418"/>
+  </g>
+</svg>

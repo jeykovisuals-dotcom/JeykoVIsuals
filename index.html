@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Jeyko Visuals — Visual Designer & Video Editor. Portafolio creativo." />
+  <title>Jeyko Visuals — Portfolio</title>
+  
+  <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+
+  <!-- Google Fonts: Pinyon Script (Display Script como BillaMount) + Cormorant Garamond + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Inter:wght@200;300;400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="cal-body">
+
+  <!-- ============================================================
+       0. FONDO PARALLAX ROJO/NEGRO (ATMÓSFERA CAL1STAR)
+       ============================================================ -->
+  <div class="cal-parallax-bg" id="parallaxBg" aria-hidden="true"></div>
+
+  <!-- CURSOR MINIMALISTA DE PUNTO CON EFECTO DIFFERENCE -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       HEADER / NAVEGACIÓN SUPERIOR FIJA
+       ============================================================ -->
+  <header class="cal-header">
+    <a href="#inicio" class="cal-monogram" aria-label="Inicio — Jeyko Visuals">
+      <img src="assets/img/logo.png" alt="Jeyko Visuals" class="cal-monogram-img" />
+    </a>
+
+    <nav class="cal-nav" aria-label="Navegaci&oacute;n principal">
+      <a href="#inicio" class="nav-link is-active">Home</a>
+      <a href="#trabajos" class="nav-link">My Work</a>
+      <a href="#sobre-mi" class="nav-link">About</a>
+      <a href="#contacto" class="nav-link">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ============================================================
+       REPRODUCTOR DE VINILO INTERACTIVO (ESQUINA INFERIOR IZQUIERDA)
+       ============================================================ -->
+  <div class="vinyl-widget" id="vinylWidget">
+    <!-- Panel del reproductor expandible -->
+    <div class="vinyl-player" id="vinylPlayer" aria-hidden="true">
+      <div class="vinyl-card">
+        <div class="vinyl-card__meta-row">
+          <img src="assets/img/vinyl.svg" alt="" class="vinyl-mini is-spinning" id="miniVinyl" />
+          <div class="vinyl-card__info">
+            <p class="vinyl-song" id="playerTitle">Like That</p>
+            <p class="vinyl-artist" id="playerArtist">Future &middot; Metro Boomin</p>
+          </div>
+        </div>
+
+        <!-- Controles -->
+        <div class="vinyl-card__controls">
+          <button class="v-btn" id="prevTrackBtn" aria-label="Anterior">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="19,5 9,12 19,19"></polygon>
+              <rect x="5" y="5" width="2" height="14"></rect>
+            </svg>
+          </button>
+          
+          <button class="v-btn v-btn--play" id="playPauseBtn" aria-label="Reproducir / Pausar">
+            <svg class="v-play-ico" id="iconPlay" width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5,3 19,12 5,21"></polygon>
+            </svg>
+            <svg class="v-pause-ico" id="iconPause" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+              <rect x="6" y="4" width="4" height="16"></rect>
+              <rect x="14" y="4" width="4" height="16"></rect>
+            </svg>
+          </button>
+
+          <button class="v-btn" id="nextTrackBtn" aria-label="Siguiente">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5,5 15,12 5,19"></polygon>
+              <rect x="17" y="5" width="2" height="14"></rect>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Barra de progreso -->
+        <div class="vinyl-scrubber" id="playerScrub">
+          <div class="vinyl-scrubber__fill" id="playerProgress"></div>
+        </div>
+
+        <div class="vinyl-time-row">
+          <span id="playerCurrent">0:00</span>
+          <span id="playerDuration">4:27</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botón con el disco de vinilo rotatorio -->
+    <button class="vinyl-disc-btn" id="vinylToggle" aria-label="Abrir reproductor de vinilo" title="Music player">
+      <img src="assets/img/vinyl.svg" alt="Music player" class="vinyl-disc-img is-spinning" id="vinylDisc" />
+    </button>
+    <audio id="bgAudio" preload="auto" src="assets/audio/like-that.mp3"></audio>
+  </div>
+
+  <main class="cal-main">
+
+    <!-- ============================================================
+         1. HERO SECTION (VIDEO DE FONDO + CAPAS DE SOMBRA 3D)
+         ============================================================ -->
+    <section class="cal-hero" id="inicio">
+      <!-- Video cinemático en bucle -->
+      <video class="cal-hero__video" autoplay muted loop playsinline preload="auto">
+        <source src="assets/video/timeline1.mp4" type="video/mp4" />
+      </video>
+
+      <div class="cal-hero__overlay" aria-hidden="true"></div>
+
+      <div class="cal-hero__center">
+        <!-- EST. 2024 -->
+        <div class="hero-item" style="transition-delay: 0.15s;">
+          <p class="hero-est">est. 2024</p>
+        </div>
+
+        <!-- Título "Jeyko Visuals" con efecto 3D idéntico a Calista Suherman -->
+        <div class="hero-item hero-title-wrap" style="transition-delay: 0.35s;">
+          <div class="hero-shadow hero-shadow-1" aria-hidden="true">Jeyko Visuals</div>
+          <div class="hero-shadow hero-shadow-2" aria-hidden="true">Jeyko Visuals</div>
+          <h1 class="hero-name">Jeyko Visuals</h1>
+        </div>
+
+        <!-- Subtítulo -->
+        <div class="hero-item" style="transition-delay: 0.55s;">
+          <p class="hero-sub">Creative Designer by choice. Video Editor of high impact.</p>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="hero-item hero-actions-wrap" style="transition-delay: 0.75s;">
+          <a href="#trabajos" class="cal-btn-outline">explore my work</a>
+          <a href="https://wa.me/593939665581?text=Hola%20Jeyko,%20quiero%20conversar%20sobre%20un%20proyecto" target="_blank" rel="noopener noreferrer" class="cal-btn-solid">work with me</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         2. "TRUSTED BY" MARQUEE RIBBON
+         ============================================================ -->
+    <section class="cal-marquee-section">
+      <p class="cal-marquee-title">Trusted by</p>
+      
+      <div class="marquee-mask">
+        <div class="marquee-track" id="marqueeTrack">
+          <!-- Marcas y Proyectos -->
+          <span class="marquee-item">AXE MARINE</span>
+          <span class="marquee-dot">&bull;</span>
+          <span class="marquee-item">STAR WARS FANMADE</span>
+          <span class="marquee-dot">&bull;</span>
+          <span class="marquee-item">EA SPORTS FC 27</span>
+          <span class="marquee-dot">&bull;</span>
+          <span class="marquee-item">NESCAF&Eacute; CL&Aacute;SICO</span>
+          <span class="marquee-dot">&bull;</span>
+          <span class="marquee-item">7UP LEMON LIME</span>
+          <span class="marquee-dot">&bull;</span>
+          <span class="marquee-item">LIONEL MESSI EDITORIAL</span>
+          <span class="marquee-dot">&bull;</span>
+          <span class="marquee-item">TYLER CREATIVE CONCEPT</span>
+          <span class="marquee-dot">&bull;</span>
+          <!-- Duplicado para desplazamiento continuo infinito -->
+          <span class="marquee-item">AXE MARINE</span>
+          <span class="marquee-dot">&bull;</span>
+          <span class="marquee-item">STAR WARS FANMADE</span>
+          <span class="marquee-dot">&bull;</span>
+          <span class="marquee-item">EA SPORTS FC 27</span>
+          <span class="marquee-dot">&bull;</span>
+          <span class="marquee-item">NESCAF&Eacute; CL&Aacute;SICO</span>
+          <span class="marquee-dot">&bull;</span>
+          <span class="marquee-item">7UP LEMON LIME</span>
+          <span class="marquee-dot">&bull;</span>
+          <span class="marquee-item">LIONEL MESSI EDITORIAL</span>
+          <span class="marquee-dot">&bull;</span>
+          <span class="marquee-item">TYLER CREATIVE CONCEPT</span>
+          <span class="marquee-dot">&bull;</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3. SELECTED WORK (ESTILO EXACTO CAL1STAR: 16:9 + HOVER PREVIEWS)
+         ============================================================ -->
+    <section class="cal-works-section" id="trabajos">
+      <div class="cal-wrap">
+        
+        <!-- Fila de título con script inicial -->
+        <div class="works-header-row scroll-reveal">
+          <h2 class="cal-section-heading">
+            <span class="script-init">S</span><span class="condensed-word">elected Work</span>
+          </h2>
+          <a href="#contacto" class="view-all-link">Contact me &rarr;</a>
+        </div>
+
+        <p class="works-hint scroll-reveal">hover a frame to preview &middot; click to watch</p>
+
+        <!-- Cuadrícula de proyectos -->
+        <div class="works-grid">
+
+          <!-- 1. Star Wars Shortfilm (Video ancho) -->
+          <div class="work-col work-col--wide scroll-reveal">
+            <article class="work-card"
+              data-title="Star Wars Shortfilm"
+              data-year="2024"
+              data-category="Video Editing"
+              data-problem="El proyecto requer&iacute;a transmitir la escala &eacute;pica de Star Wars en un cortometraje independiente con recursos limitados."
+              data-solution="Post-producci&oacute;n completa: edici&oacute;n narrativa, color grading con paleta gal&aacute;ctica y mezcla de audio con efectos ic&oacute;nicos de la saga."
+              data-tools="DaVinci Resolve"
+              data-video="assets/video/timeline1.mp4"
+              data-poster="assets/img/starwars-thumb.jpg"
+              data-link="https://drive.google.com/file/d/1zKDW78W_PAk5FvkRhMnGjw6fxjJAQy-A/view?usp=drive_link">
+              <div class="work-media">
+                <video src="assets/video/timeline1.mp4" autoplay muted loop playsinline preload="auto" poster="assets/img/starwars-thumb.jpg"></video>
+                <div class="work-media__overlay"></div>
+              </div>
+              <div class="work-caption">
+                <p class="work-cat">Video Editing</p>
+                <h3 class="work-title">Star Wars Shortfilm</h3>
+              </div>
+            </article>
+          </div>
+
+          <!-- 2. Identidad Animada de Marca (Motion Graphics) -->
+          <div class="work-col scroll-reveal">
+            <article class="work-card"
+              data-title="Identidad Animada de Marca"
+              data-year="2025"
+              data-category="Motion Graphics"
+              data-problem="La marca carec&iacute;a de presencia en video, perdiendo oportunidades en canales digitales de alto engagement."
+              data-solution="Paquete completo de animaciones: logo reveal, transiciones, bumpers y templates para redes sociales."
+              data-tools="Illustrator,After Effects"
+              data-video="assets/video/sequence01.mp4"
+              data-link="https://drive.google.com/file/d/1Hn_EdQavmbXNiyqGCrjBmhMEhm4I1G0V/view?usp=drive_link">
+              <div class="work-media">
+                <video src="assets/video/sequence01.mp4" autoplay muted loop playsinline preload="auto"></video>
+                <div class="work-media__overlay"></div>
+              </div>
+              <div class="work-caption">
+                <p class="work-cat">Motion Graphics</p>
+                <h3 class="work-title">Identidad Animada</h3>
+              </div>
+            </article>
+          </div>
+
+          <!-- 3. AXE Marine (Graphic Design) -->
+          <div class="work-col scroll-reveal">
+            <article class="work-card"
+              data-title="AXE Marine &mdash; Pieza Publicitaria"
+              data-year="2025"
+              data-category="Graphic Design"
+              data-problem="El cliente necesitaba una pieza gr&aacute;fica de alto impacto visual para promover el lanzamiento del desodorante AXE Marine en redes sociales."
+              data-solution="Composici&oacute;n fotogr&aacute;fica con escenario tropical, integraci&oacute;n del producto con efectos de luz y agua para transmitir frescura m&aacute;xima."
+              data-tools="Photoshop"
+              data-image="assets/img/axe-marine.jpg"
+              data-link="https://drive.google.com/file/d/1OdyzfdhKO171Vd_jrjAcDf1-VDLRxXL8/view?usp=drive_link">
+              <div class="work-media">
+                <img src="assets/img/axe-marine.jpg" alt="AXE Marine" loading="lazy" />
+                <div class="work-media__overlay"></div>
+              </div>
+              <div class="work-caption">
+                <p class="work-cat">Graphic Design</p>
+                <h3 class="work-title">AXE Marine &mdash; Campaign</h3>
+              </div>
+            </article>
+          </div>
+
+          <!-- 4. EA Sports FC 27 (Cover Art) -->
+          <div class="work-col scroll-reveal">
+            <article class="work-card"
+              data-title="EA Sports FC 27 &mdash; Cover Art"
+              data-year="2025"
+              data-category="Cover Art"
+              data-problem="El estudio requer&iacute;a una portada alternativa no oficial que captara la energ&iacute;a competitiva y el impacto visual de la saga EA Sports FC."
+              data-solution="Composici&oacute;n digital con capas de estadio, luz dram&aacute;tica y tipograf&iacute;a oficial para un resultado de nivel AAA."
+              data-tools="Photoshop,Illustrator"
+              data-image="assets/img/ea-fc27.jpg"
+              data-link="https://drive.google.com/file/d/1DB8kmsqk0S483jVXProL0bR5uQ-3DahL/view?usp=drive_link">
+              <div class="work-media">
+                <img src="assets/img/ea-fc27.jpg" alt="EA Sports FC 27" loading="lazy" />
+                <div class="work-media__overlay"></div>
+              </div>
+              <div class="work-caption">
+                <p class="work-cat">Cover Art</p>
+                <h3 class="work-title">EA Sports FC 27</h3>
+              </div>
+            </article>
+          </div>
+
+          <!-- 5. Nescafé Clásico -->
+          <div class="work-col scroll-reveal">
+            <article class="work-card"
+              data-title="Nescaf&eacute; Cl&aacute;sico &mdash; Publicidad"
+              data-year="2025"
+              data-category="Commercial"
+              data-problem="La marca necesitaba una pieza publicitaria con est&eacute;tica premium que elevara la percepci&oacute;n del producto cl&aacute;sico en plataformas digitales."
+              data-solution="Escenograf&iacute;a minimalista con calidad de producto hero, iluminaci&oacute;n c&aacute;lida y composici&oacute;n centrada que transmite calidad y tradici&oacute;n."
+              data-tools="Photoshop"
+              data-image="assets/img/nescafe.jpg"
+              data-link="https://drive.google.com/file/d/1Q-q9Jo9jVLKHPErxGqW-7kFjhZVWX8OC/view?usp=drive_link">
+              <div class="work-media">
+                <img src="assets/img/nescafe.jpg" alt="Nescafé Clásico" loading="lazy" />
+                <div class="work-media__overlay"></div>
+              </div>
+              <div class="work-caption">
+                <p class="work-cat">Commercial Art</p>
+                <h3 class="work-title">Nescaf&eacute; Cl&aacute;sico</h3>
+              </div>
+            </article>
+          </div>
+
+          <!-- 6. 7UP Lemon Lime -->
+          <div class="work-col scroll-reveal">
+            <article class="work-card"
+              data-title="7UP Lemon Lime &mdash; Key Visual"
+              data-year="2025"
+              data-category="Key Visual"
+              data-problem="El cliente buscaba un key visual refrescante que conectara con audiencias j&oacute;venes digitales y comunicara la propuesta de frescura m&aacute;xima del producto."
+              data-solution="Composici&oacute;n centrada en salpicaduras de c&iacute;tricos, paleta verde-amarilla vibrante y tipograf&iacute;a bold para impacto inmediato en redes sociales."
+              data-tools="Photoshop,Illustrator"
+              data-image="assets/img/7up.jpg"
+              data-link="https://drive.google.com/file/d/1tOl2zhA39fTPmM_xcs-98NMs0oUE6cuH/view?usp=drive_link">
+              <div class="work-media">
+                <img src="assets/img/7up.jpg" alt="7UP Lemon Lime" loading="lazy" />
+                <div class="work-media__overlay"></div>
+              </div>
+              <div class="work-caption">
+                <p class="work-cat">Key Visual</p>
+                <h3 class="work-title">7UP Lemon Lime</h3>
+              </div>
+            </article>
+          </div>
+
+          <!-- 7. Messi Tribute -->
+          <div class="work-col scroll-reveal">
+            <article class="work-card"
+              data-title="Messi &mdash; Pieza Editorial"
+              data-year="2025"
+              data-category="Editorial"
+              data-problem="Se requer&iacute;a una pieza editorial de alto impacto visual que rindiera homenaje a la trayectoria de Lionel Messi para una publicaci&oacute;n deportiva digital."
+              data-solution="Retoque fotogr&aacute;fico profesional con doble exposici&oacute;n, efectos de luz dram&aacute;tica y composici&oacute;n editorial que refleja grandeza y legado."
+              data-tools="Photoshop"
+              data-image="assets/img/messi.jpg"
+              data-link="https://drive.google.com/file/d/1LdmaNLaLr1pdMt9jwlr_r24Q3dSisip9/view?usp=drive_link">
+              <div class="work-media">
+                <img src="assets/img/messi.jpg" alt="Messi" loading="lazy" />
+                <div class="work-media__overlay"></div>
+              </div>
+              <div class="work-caption">
+                <p class="work-cat">Editorial Art</p>
+                <h3 class="work-title">Lionel Messi Tribute</h3>
+              </div>
+            </article>
+          </div>
+
+          <!-- 8. Tyler Art -->
+          <div class="work-col scroll-reveal">
+            <article class="work-card"
+              data-title="Tyler &mdash; Arte Visual"
+              data-year="2025"
+              data-category="Visual Concept"
+              data-problem="El proyecto exig&iacute;a una pieza visual experimental que capturara la est&eacute;tica &uacute;nica y el universo art&iacute;stico de Tyler, the Creator."
+              data-solution="Composici&oacute;n digital con paleta vibrante y capas de textura que reflejan el estilo musical y visual del artista, para uso en plataformas digitales."
+              data-tools="Photoshop,Illustrator"
+              data-image="assets/img/tyler.jpg"
+              data-link="https://drive.google.com/file/d/1rtfH61K6bVDP6GE_r8zwgblvXi06uV3p/view?usp=drive_link">
+              <div class="work-media">
+                <img src="assets/img/tyler.jpg" alt="Tyler" loading="lazy" />
+                <div class="work-media__overlay"></div>
+              </div>
+              <div class="work-caption">
+                <p class="work-cat">Visual Concept</p>
+                <h3 class="work-title">Tyler &mdash; Concept</h3>
+              </div>
+            </article>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4. ABOUT ME CON BARAJA DE CARTAS APILADAS (CARD STACK 3D)
+         ============================================================ -->
+    <section class="cal-about-section" id="sobre-mi">
+      <div class="cal-wrap about-grid">
+        
+        <!-- Columna Izquierda: Texto Editorial -->
+        <div class="about-text-col scroll-reveal">
+          <div class="about-title-wrap">
+            <div class="about-shadow about-shadow-1" aria-hidden="true">About me</div>
+            <div class="about-shadow about-shadow-2" aria-hidden="true">About me</div>
+            <h2 class="cal-section-heading">
+              <span class="script-init">A</span><span class="condensed-word">bout me</span>
+            </h2>
+          </div>
+
+          <p class="about-handle">@jeykovisuals &nbsp;|&nbsp; Dise&ntilde;ador Creativo &amp; Editor de Video &nbsp;|&nbsp; Quito, Ecuador</p>
+          
+          <p class="about-lead">
+            &iexcl;Hola! Soy Jeyko, dise&ntilde;ador visual y editor de video. Me apasiona transformar conceptos en piezas visuales de alto calibre con ritmo y emoci&oacute;n.
+          </p>
+
+          <p class="about-lead">
+            Con una mentalidad orientada a la est&eacute;tica y al detalle t&eacute;cnico, ayudo a creadores y marcas a diferenciarse y conectar profundamente con sus audiencias.
+          </p>
+
+          <div class="about-tags-row">
+            <div class="about-tag-col">
+              <p>Visual Designer</p>
+              <p>Video Editor</p>
+              <p>Motion Graphics</p>
+            </div>
+            <div class="about-tag-col">
+              <p>Color Grading</p>
+              <p>Cover &amp; Key Visuals</p>
+              <p>Freelancer</p>
+            </div>
+          </div>
+
+          <a href="https://wa.me/593939665581?text=Hola%20Jeyko,%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20conversar" target="_blank" rel="noopener noreferrer" class="cal-btn-solid about-cta-btn">
+            Escr&iacute;beme por WhatsApp
+          </a>
+        </div>
+
+        <!-- Columna Derecha: Baraja 3D de Fotos Apiladas -->
+        <div class="about-deck-col scroll-reveal">
+          <p class="deck-hint-text">Toca las cartas para barajar</p>
+          
+          <div class="card-deck-container" id="cardDeck" aria-label="Mazo interactivo de proyectos">
+            <!-- Carta 1 -->
+            <div class="deck-card" style="--r: 0deg; --x: 0px; --z: 7;">
+              <img src="assets/img/axe-marine.jpg" alt="" draggable="false" />
+            </div>
+            <!-- Carta 2 -->
+            <div class="deck-card" style="--r: -3deg; --x: -8px; --z: 6;">
+              <img src="assets/img/ea-fc27.jpg" alt="" draggable="false" />
+            </div>
+            <!-- Carta 3 -->
+            <div class="deck-card" style="--r: 5deg; --x: 10px; --z: 5;">
+              <img src="assets/img/messi.jpg" alt="" draggable="false" />
+            </div>
+            <!-- Carta 4 -->
+            <div class="deck-card" style="--r: -6deg; --x: -14px; --z: 4;">
+              <img src="assets/img/7up.jpg" alt="" draggable="false" />
+            </div>
+            <!-- Carta 5 -->
+            <div class="deck-card" style="--r: 3deg; --x: 6px; --z: 3;">
+              <img src="assets/img/nescafe.jpg" alt="" draggable="false" />
+            </div>
+            <!-- Carta 6 -->
+            <div class="deck-card" style="--r: -4deg; --x: -10px; --z: 2;">
+              <img src="assets/img/tyler.jpg" alt="" draggable="false" />
+            </div>
+            <!-- Carta 7 -->
+            <div class="deck-card" style="--r: 7deg; --x: 12px; --z: 1;">
+              <img src="assets/img/logo.png" alt="" draggable="false" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5. MY TOOLKIT (EXCLUSIVAMENTE: DAVINCI, PHOTOSHOP, ILLUSTRATOR, CAPCUT)
+         ============================================================ -->
+    <section class="cal-toolkit-section">
+      <div class="cal-wrap text-center">
+        <h2 class="cal-section-heading toolkit-heading scroll-reveal">
+          <span class="script-init">M</span><span class="condensed-word">y Toolkit</span>
+        </h2>
+
+        <!-- Fila de las 4 herramientas solicitadas -->
+        <div class="toolkit-flex scroll-reveal">
+          
+          <!-- 1. DaVinci Resolve -->
+          <div class="tool-squircle-item">
+            <img src="assets/img/apps/dr.svg" alt="DaVinci Resolve" class="tool-app-img" />
+            <p class="tool-app-name">DaVinci Resolve</p>
+          </div>
+
+          <!-- 2. Adobe Photoshop -->
+          <div class="tool-squircle-item">
+            <img src="assets/img/apps/ps.svg" alt="Adobe Photoshop" class="tool-app-img" />
+            <p class="tool-app-name">Photoshop</p>
+          </div>
+
+          <!-- 3. Adobe Illustrator -->
+          <div class="tool-squircle-item">
+            <img src="assets/img/apps/ai.svg" alt="Adobe Illustrator" class="tool-app-img" />
+            <p class="tool-app-name">Illustrator</p>
+          </div>
+
+          <!-- 4. CapCut -->
+          <div class="tool-squircle-item">
+            <img src="assets/img/apps/cc.svg" alt="CapCut" class="tool-app-img" />
+            <p class="tool-app-name">CapCut</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         6. CONTACTO & FOOTER EDITORIAL
+         ============================================================ -->
+    <section class="cal-contact-section" id="contacto">
+      <div class="cal-wrap text-center scroll-reveal">
+        <p class="contact-eyebrow">&iquest;Tienes un proyecto en mente?</p>
+        <h2 class="contact-headline">Let's create something iconic.</h2>
+        <p class="contact-subtext">Disponible para proyectos freelance, colaboraciones audiovisuales y branding.</p>
+
+        <div class="contact-buttons-row">
+          <a href="https://wa.me/593939665581?text=Hola%20Jeyko,%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20hablar%20sobre%20un%20proyecto" target="_blank" rel="noopener noreferrer" class="contact-pill-btn">
+            <span class="pill-dot"></span>
+            <span>WhatsApp &middot; +593 93 966 5581</span>
+          </a>
+
+          <a href="mailto:jeykovisuals@gmail.com" class="contact-pill-btn">
+            <span class="pill-dot pill-dot--cream"></span>
+            <span>Email &middot; jeykovisuals@gmail.com</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="cal-site-footer">
+    <div class="cal-wrap footer-inner-row">
+      <p class="footer-copy">&copy; 2026 JEYKO VISUALS &middot; ECUADOR &middot; ALL RIGHTS RESERVED.</p>
+      <a href="#inicio" class="footer-back-top">Back to top &uarr;</a>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       MODAL DE DETALLE DE PROYECTO
+       ============================================================ -->
+  <div class="project-modal-backdrop" id="modalOverlay" role="dialog" aria-modal="true" hidden>
+    <div class="project-modal-container">
+      <button class="modal-close-trigger" id="modalClose" aria-label="Cerrar">&times;</button>
+      
+      <div class="modal-content-split">
+        <div class="modal-media-pane" id="modalMedia"></div>
+
+        <div class="modal-info-pane">
+          <p class="modal-tag" id="modalCat"></p>
+          <h3 class="modal-project-title" id="modalTitle"></h3>
+          
+          <div class="modal-text-block">
+            <p class="modal-section-label">Problema resuelto</p>
+            <p class="modal-body-p" id="modalProblem"></p>
+          </div>
+
+          <div class="modal-text-block">
+            <p class="modal-section-label">Soluci&oacute;n</p>
+            <p class="modal-body-p" id="modalSolution"></p>
+          </div>
+
+          <div class="modal-text-block">
+            <p class="modal-section-label">Herramientas</p>
+            <ul class="modal-tools-tags" id="modalTools"></ul>
+          </div>
+
+          <a href="#" class="cal-btn-solid modal-drive-btn" id="modalDriveLink" target="_blank" rel="noopener noreferrer">
+            Ver en Google Drive &nearr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lenis Momentum Smooth Scroll (Estilo exacto Cal1star) -->
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

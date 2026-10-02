@@ -1,0 +1,1290 @@
+/* ============================================================
+   JEYKO VISUALS — PORTAFOLIO EDITORIAL CINEMATOGRÁFICO
+   Inspirado 100% en la estética y desplazamiento de CAL1STAR.COM
+   Paleta: Noir Carmesí (#070002, #6b0016, #aa0029, #f5f0f0)
+   Efectos: Lenis Inertia Scroll, Parallax, 3D Layered Typography,
+            Vinilo Interactivo, Baraja 3D, Squircle Toolkit
+   ============================================================ */
+
+/* --- 1. VARIABLES & PALETA DE COLOR ----------------------- */
+:root {
+  --bg-deep: #070002;
+  --bg-noir: #0a0003;
+  --bg-card: rgba(18, 2, 6, 0.72);
+  --bg-card-hover: rgba(28, 4, 10, 0.92);
+  --bg-player: rgba(12, 1, 4, 0.94);
+
+  --wine-dark: #3a000b;
+  --wine-deep: #540012;
+  --wine-main: #7a001a;
+  --wine-bright: #aa0029;
+  --wine-glow: rgba(170, 0, 41, 0.35);
+  --wine-ambient: rgba(122, 0, 26, 0.28);
+
+  --text-primary: #f5f0f0;
+  --text-muted: rgba(245, 240, 240, 0.68);
+  --text-dim: rgba(245, 240, 240, 0.42);
+
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.22);
+  --border-wine: rgba(170, 0, 41, 0.35);
+
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-script: 'Pinyon Script', cursive;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* --- 2. RESET Y BASES ------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  scroll-behavior: smooth;
+}
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body.cal-body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Grano / Textura de Ruido Cinematográfico (Filtro Film Grain Cal1star) */
+body.cal-body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9990;
+  opacity: 0.038;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+img, video {
+  max-width: 100%;
+  display: block;
+}
+
+.cal-wrap {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* --- 3. FONDO ATMOSFÉRICO PARALLAX CAL1STAR ---------------- */
+.cal-parallax-bg {
+  position: fixed;
+  top: -25vh;
+  left: 0;
+  right: 0;
+  height: 150vh;
+  z-index: -2;
+  pointer-events: none;
+  will-change: transform;
+  background:
+    radial-gradient(ellipse at 50% 15%, rgba(122, 0, 26, 0.42) 0%, transparent 62%),
+    radial-gradient(ellipse at 85% 55%, rgba(84, 0, 18, 0.32) 0%, transparent 52%),
+    radial-gradient(ellipse at 15% 85%, rgba(170, 0, 41, 0.22) 0%, transparent 58%),
+    #070002;
+}
+
+/* --- 4. CURSOR MINIMALISTA DE PUNTO (DIFFERENCE CAL1STAR) -- */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background-color: rgba(245, 240, 240, 0.9);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+  transition: transform 0.15s ease-out, background-color 0.2s ease;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.cursor-dot.is-active {
+  transform: translate(-50%, -50%) scale(2.6);
+  background-color: var(--wine-bright);
+  mix-blend-mode: normal;
+  box-shadow: 0 0 15px var(--wine-glow);
+}
+
+@media (pointer: coarse), (max-width: 768px) {
+  .cursor-dot { display: none !important; }
+}
+
+/* --- 5. HEADER Y NAVEGACIÓN SUPERIOR FIJA ------------------- */
+.cal-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1.6rem clamp(1.5rem, 5vw, 4rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.cal-header > * {
+  pointer-events: auto;
+}
+
+.cal-monogram {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #000000;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, box-shadow 0.3s;
+}
+
+.cal-monogram:hover {
+  transform: scale(1.08);
+  border-color: var(--wine-bright);
+  box-shadow: 0 0 20px var(--wine-glow);
+}
+
+.cal-monogram-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.35);
+  display: block;
+}
+
+.cal-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.2rem, 3.2vw, 2.6rem);
+  background: rgba(14, 1, 4, 0.65);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  padding: 0.65rem 1.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+}
+
+.nav-link {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--text-muted);
+  font-weight: 500;
+  transition: color 0.25s, letter-spacing 0.25s;
+  position: relative;
+}
+
+.nav-link:hover,
+.nav-link.is-active {
+  color: var(--text-primary);
+  letter-spacing: 0.26em;
+}
+
+.nav-link.is-active::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--wine-bright);
+  box-shadow: 0 0 6px var(--wine-bright);
+}
+
+/* --- 6. REPRODUCTOR DE VINILO INTERACTIVO (ESQUINA INFERIOR) */
+.vinyl-widget {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.vinyl-disc-btn {
+  width: 86px;
+  height: 86px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 10px 26px rgba(0, 0, 0, 0.88));
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s;
+}
+
+.vinyl-disc-btn:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 12px 30px var(--wine-glow));
+}
+
+.vinyl-disc-img {
+  width: 86px;
+  height: 86px;
+  object-fit: contain;
+  transform-origin: center center;
+}
+
+.vinyl-disc-img.is-spinning,
+.vinyl-mini.is-spinning {
+  animation: vinylSpin 3.8s linear infinite;
+}
+
+.vinyl-disc-img.is-paused,
+.vinyl-mini.is-paused {
+  animation-play-state: paused;
+}
+
+@keyframes vinylSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Panel Desplegable del Reproductor */
+.vinyl-player {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(14px) scale(0.95);
+  pointer-events: none;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, transform 0.35s ease;
+}
+
+.vinyl-player.is-open {
+  max-height: 290px;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.vinyl-card {
+  background: var(--bg-player);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border-wine);
+  border-radius: 18px;
+  padding: 1.15rem 1.3rem;
+  width: 276px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.88), 0 0 28px rgba(122, 0, 26, 0.28);
+}
+
+.vinyl-card__meta-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 0.95rem;
+}
+
+.vinyl-mini {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  flex-shrink: 0;
+  transform-origin: center center;
+}
+
+.vinyl-card__info {
+  overflow: hidden;
+  flex: 1;
+}
+
+.vinyl-song {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.vinyl-artist {
+  font-size: 0.62rem;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.vinyl-card__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 0.9rem;
+}
+
+.v-btn {
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  opacity: 0.75;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.v-btn:hover {
+  opacity: 1;
+  transform: scale(1.12);
+}
+
+.v-btn--play {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-subtle);
+  opacity: 1;
+}
+
+.v-btn--play:hover {
+  background: var(--wine-bright);
+  box-shadow: 0 0 16px var(--wine-glow);
+}
+
+.vinyl-scrubber {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.vinyl-scrubber__fill {
+  height: 100%;
+  width: 0%;
+  background: var(--wine-bright);
+  border-radius: 2px;
+  box-shadow: 0 0 8px var(--wine-bright);
+  transition: width 0.2s linear;
+}
+
+.vinyl-time-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-size: 0.58rem;
+  color: var(--text-dim);
+  letter-spacing: 0.06em;
+}
+
+/* --- 7. HERO SECTION CINEMATOGRÁFICO ----------------------- */
+.cal-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8.5rem 1.5rem 6rem;
+  overflow: hidden;
+  text-align: center;
+}
+
+.cal-hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+  filter: contrast(1.15) brightness(0.72);
+  z-index: 0;
+}
+
+.cal-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(10, 0, 2, 0.35) 0%, rgba(7, 0, 2, 0.94) 100%);
+  z-index: 1;
+}
+
+.cal-hero__center {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.hero-est {
+  font-size: clamp(0.62rem, 1vw, 0.72rem);
+  text-transform: uppercase;
+  letter-spacing: 0.36em;
+  color: var(--text-dim);
+  margin-bottom: 1.4rem;
+}
+
+/* Tipografía 3D Extruida Estilo Cal1star */
+.hero-title-wrap {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1.8rem;
+}
+
+.hero-shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(3.4rem, 8.5vw, 7.8rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.hero-shadow-1 {
+  color: #000000;
+  opacity: 0.55;
+  transform: translate(4px, 4px);
+}
+
+.hero-shadow-2 {
+  color: #1a0004;
+  opacity: 0.35;
+  transform: translate(8px, 8px);
+}
+
+.hero-name {
+  position: relative;
+  font-family: var(--font-serif);
+  font-size: clamp(3.4rem, 8.5vw, 7.8rem);
+  font-weight: 700;
+  background: linear-gradient(180deg, #ffffff 0%, #e2b4be 45%, #aa0029 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.05;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  text-shadow: 0 10px 40px rgba(170, 0, 41, 0.35);
+}
+
+.hero-sub {
+  font-size: clamp(0.72rem, 1.2vw, 0.95rem);
+  color: var(--text-muted);
+  letter-spacing: 0.16em;
+  max-width: 640px;
+  margin: 0 auto 2.8rem;
+  font-weight: 400;
+}
+
+.hero-actions-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.cal-btn-outline,
+.cal-btn-solid {
+  display: inline-block;
+  padding: 0.85rem 2.2rem;
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-weight: 600;
+  border-radius: 999px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cal-btn-outline {
+  border: 1px solid var(--border-hover);
+  color: var(--text-muted);
+  background: transparent;
+}
+
+.cal-btn-outline:hover {
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+  transform: scale(1.05);
+}
+
+.cal-btn-solid {
+  background: rgba(245, 240, 240, 0.95);
+  color: #070002;
+  border: 1px solid transparent;
+}
+
+.cal-btn-solid:hover {
+  background: #ffffff;
+  transform: scale(1.05);
+  box-shadow: 0 0 24px rgba(255, 255, 255, 0.35);
+}
+
+/* --- 8. CINTA "TRUSTED BY" (MARQUEE RIBBON) ---------------- */
+.cal-marquee-section {
+  padding: 2.4rem 0 1.6rem;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(10, 0, 2, 0.5);
+  overflow: hidden;
+}
+
+.cal-marquee-title {
+  text-align: center;
+  font-size: 0.64rem;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: var(--text-dim);
+  margin-bottom: 1.1rem;
+}
+
+.marquee-mask {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  width: max-content;
+  animation: marqueeScroll 36s linear infinite;
+  white-space: nowrap;
+}
+
+.marquee-item {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  opacity: 0.78;
+}
+
+.marquee-dot {
+  color: var(--wine-bright);
+  font-size: 0.6rem;
+  opacity: 0.8;
+}
+
+@keyframes marqueeScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* --- 9. SELECTED WORK (GRID CAL1STAR CON 16:9 MEDIA) ------- */
+.cal-works-section {
+  padding: 7rem 0 6rem;
+  position: relative;
+}
+
+.works-header-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.cal-section-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.script-init {
+  font-family: var(--font-script);
+  font-size: 1.35em;
+  font-weight: 400;
+  color: var(--wine-bright);
+  margin-right: -0.05em;
+  display: inline-block;
+}
+
+.condensed-word {
+  font-family: var(--font-serif);
+}
+
+.view-all-link {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--text-dim);
+  transition: color 0.25s, transform 0.25s;
+}
+
+.view-all-link:hover {
+  color: var(--text-primary);
+  transform: translateX(3px);
+}
+
+.works-hint {
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--text-dim);
+  text-align: center;
+  margin-bottom: 2.8rem;
+}
+
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem;
+}
+
+.work-col--wide {
+  grid-column: span 2;
+}
+
+.work-card {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #000;
+  cursor: pointer;
+  border: 1px solid var(--border-subtle);
+  transition: border-color 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.work-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-hover);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75), 0 0 22px var(--wine-glow);
+}
+
+.work-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #000000;
+}
+
+.work-media img,
+.work-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+}
+
+.work-card:hover .work-media img,
+.work-card:hover .work-media video {
+  transform: scale(1.06);
+}
+
+.work-media__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 0, 1, 0.45);
+  transition: background 0.4s ease;
+}
+
+.work-card:hover .work-media__overlay {
+  background: rgba(5, 0, 1, 0.12);
+}
+
+.work-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem 1.25rem 1rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.work-cat {
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: var(--wine-bright);
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.work-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+}
+
+/* --- 10. ABOUT ME CON BARAJA 3D (CARD STACK CAL1STAR) ------- */
+.cal-about-section {
+  padding: 7rem 0 6rem;
+  background: radial-gradient(circle at 75% 45%, rgba(107, 0, 22, 0.24) 0%, transparent 60%);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: center;
+}
+
+.about-title-wrap {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.about-shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  font-weight: 700;
+  color: #000000;
+  pointer-events: none;
+}
+
+.about-shadow-1 {
+  opacity: 0.35;
+  transform: translate(3px, 3px);
+}
+
+.about-shadow-2 {
+  opacity: 0.18;
+  transform: translate(6px, 6px);
+}
+
+.about-handle {
+  font-size: 0.72rem;
+  color: var(--wine-bright);
+  letter-spacing: 0.12em;
+  margin-bottom: 1.4rem;
+  font-weight: 500;
+}
+
+.about-lead {
+  font-size: clamp(0.85rem, 1.1vw, 0.98rem);
+  color: var(--text-muted);
+  line-height: 1.85;
+  margin-bottom: 1.2rem;
+}
+
+.about-tags-row {
+  display: flex;
+  gap: 3rem;
+  margin: 1.8rem 0 2.2rem;
+}
+
+.about-tag-col p {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-dim);
+  margin-bottom: 0.5rem;
+}
+
+.about-cta-btn {
+  margin-top: 0.5rem;
+  display: inline-block;
+}
+
+/* Contenedor de la Baraja 3D */
+.about-deck-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.deck-hint-text {
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-dim);
+  margin-bottom: 1.2rem;
+}
+
+.card-deck-container {
+  position: relative;
+  width: clamp(240px, 26vw, 330px);
+  height: clamp(320px, 34vw, 440px);
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.deck-card {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.78), 0 0 15px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--border-subtle);
+  background: #000;
+  transform: translate(var(--x, 0px), 0) rotate(var(--r, 0deg));
+  z-index: var(--z, 1);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s ease, opacity 0.3s ease;
+  user-select: none;
+}
+
+.deck-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.card-deck-container:hover .deck-card {
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.92), 0 0 25px var(--wine-glow);
+}
+
+/* --- 11. MY TOOLKIT (SQUIRCLES EXACTAS: DAVINCI, PS, AI, CAPCUT) */
+.cal-toolkit-section {
+  padding: 6.5rem 0;
+  text-align: center;
+}
+
+.toolkit-heading {
+  margin-bottom: 2.8rem;
+}
+
+.toolkit-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(1.4rem, 4vw, 3.5rem);
+  flex-wrap: wrap;
+}
+
+.tool-squircle-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  width: clamp(74px, 10vw, 100px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: default;
+}
+
+.tool-squircle-item:hover {
+  transform: translateY(-8px);
+}
+
+.tool-app-img {
+  width: clamp(64px, 8.5vw, 86px);
+  height: clamp(64px, 8.5vw, 86px);
+  border-radius: 22%;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.6);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  display: block;
+}
+
+.tool-squircle-item:hover .tool-app-img {
+  box-shadow: 0 16px 36px var(--wine-glow);
+  transform: scale(1.04);
+}
+
+.tool-app-name {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  transition: color 0.25s;
+}
+
+.tool-squircle-item:hover .tool-app-name {
+  color: var(--text-primary);
+}
+
+/* --- 12. CONTACTO Y FOOTER EDITORIAL ----------------------- */
+.cal-contact-section {
+  padding: 7rem 0 6rem;
+  background: radial-gradient(circle at 50% 10%, rgba(122, 0, 26, 0.28) 0%, transparent 65%);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.contact-eyebrow {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: var(--wine-bright);
+  margin-bottom: 0.8rem;
+}
+
+.contact-headline {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 1rem;
+}
+
+.contact-subtext {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  max-width: 520px;
+  margin: 0 auto 3rem;
+}
+
+.contact-buttons-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.contact-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.95rem 1.8rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.05em;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.contact-pill-btn:hover {
+  background: var(--wine-main);
+  border-color: var(--wine-bright);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px var(--wine-glow);
+}
+
+.pill-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #25d366;
+  box-shadow: 0 0 10px #25d366;
+  animation: pillPulse 2s infinite;
+}
+
+.pill-dot--cream {
+  background: #f5f0f0;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  animation: none;
+}
+
+@keyframes pillPulse {
+  0%   { opacity: 1; transform: scale(1); }
+  50%  { opacity: 0.4; transform: scale(0.85); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.cal-site-footer {
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  letter-spacing: 0.18em;
+}
+
+.footer-inner-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-back-top {
+  transition: color 0.25s, transform 0.25s;
+  display: inline-block;
+}
+
+.footer-back-top:hover {
+  color: var(--text-primary);
+  transform: translateY(-2px);
+}
+
+/* --- 13. MODAL DETALLE DE PROYECTO ------------------------- */
+.project-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 0, 1, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: grid;
+  place-items: center;
+  z-index: 9999;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.project-modal-backdrop:not([hidden]) {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.project-modal-container {
+  background: rgba(14, 1, 4, 0.96);
+  border: 1px solid var(--border-wine);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 1040px;
+  max-height: 90vh;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.95), 0 0 35px var(--wine-glow);
+  transform: scale(0.95);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-modal-backdrop:not([hidden]) .project-modal-container {
+  transform: scale(1);
+}
+
+.modal-close-trigger {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: var(--text-primary);
+  z-index: 10;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.modal-close-trigger:hover {
+  background: var(--wine-bright);
+  transform: rotate(90deg);
+}
+
+.modal-content-split {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  max-height: 85vh;
+}
+
+.modal-media-pane {
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 380px;
+}
+
+.modal-media-pane video,
+.modal-media-pane img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.modal-info-pane {
+  padding: 3rem 2.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-tag {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: var(--wine-bright);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.modal-project-title {
+  font-family: var(--font-serif);
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.5rem;
+  line-height: 1.15;
+}
+
+.modal-text-block {
+  margin-bottom: 1.2rem;
+}
+
+.modal-section-label {
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--text-dim);
+  margin-bottom: 0.25rem;
+}
+
+.modal-body-p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.modal-tools-tags {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  flex-wrap: wrap;
+  margin-top: 0.4rem;
+}
+
+.modal-tools-tags li {
+  font-size: 0.68rem;
+  padding: 0.28rem 0.75rem;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+}
+
+.modal-drive-btn {
+  margin-top: auto;
+  width: fit-content;
+  padding: 0.85rem 1.8rem;
+}
+
+/* --- 14. SCROLL REVEAL (INERCIA Y TRANSICIÓN EDITORIAL) ---- */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- 15. RESPONSIVE BREAKPOINTS --------------------------- */
+@media (max-width: 1024px) {
+  .works-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+  .about-deck-col {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .cal-header {
+    padding: 1.2rem 1.5rem;
+  }
+  .cal-nav {
+    display: none;
+  }
+  .cal-hero {
+    min-height: 88vh;
+    padding: 7rem 1.2rem 4rem;
+  }
+  .hero-shadow,
+  .hero-name {
+    font-size: 3.2rem;
+  }
+  .works-grid {
+    grid-template-columns: 1fr;
+  }
+  .work-col--wide {
+    grid-column: span 1;
+  }
+  .modal-content-split {
+    grid-template-columns: 1fr;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .modal-media-pane {
+    min-height: 240px;
+  }
+  .modal-info-pane {
+    padding: 1.8rem 1.4rem;
+  }
+  .vinyl-widget {
+    bottom: 1.2rem;
+    left: 1.2rem;
+  }
+  .vinyl-disc-btn {
+    width: 68px;
+    height: 68px;
+  }
+  .vinyl-disc-img {
+    width: 68px;
+    height: 68px;
+  }
+  .vinyl-card {
+    width: 250px;
+  }
+}

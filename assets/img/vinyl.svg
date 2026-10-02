@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Vinyl subtle sheen -->
+    <radialGradient id="grooveShine" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#141416"/>
+      <stop offset="40%" stop-color="#0a0a0c"/>
+      <stop offset="42%" stop-color="#1c1c20"/>
+      <stop offset="44%" stop-color="#0a0a0c"/>
+      <stop offset="60%" stop-color="#18181c"/>
+      <stop offset="62%" stop-color="#0a0a0c"/>
+      <stop offset="78%" stop-color="#1e1e22"/>
+      <stop offset="80%" stop-color="#0a0a0c"/>
+      <stop offset="94%" stop-color="#16161a"/>
+      <stop offset="96%" stop-color="#070708"/>
+      <stop offset="100%" stop-color="#020202"/>
+    </radialGradient>
+    <!-- Specular light reflections across the grooves -->
+    <linearGradient id="sheen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.18)"/>
+      <stop offset="25%" stop-color="transparent"/>
+      <stop offset="50%" stop-color="rgba(255,255,255,0.22)"/>
+      <stop offset="75%" stop-color="transparent"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0.18)"/>
+    </linearGradient>
+    <radialGradient id="centerLabel" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#990024"/>
+      <stop offset="65%" stop-color="#5a0013"/>
+      <stop offset="100%" stop-color="#240007"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Outer Vinyl Edge -->
+  <circle cx="256" cy="256" r="250" fill="url(#grooveShine)" stroke="#222" stroke-width="2"/>
+  
+  <!-- Grooves -->
+  <circle cx="256" cy="256" r="236" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1.5"/>
+  <circle cx="256" cy="256" r="220" fill="none" stroke="rgba(0,0,0,0.6)" stroke-width="2"/>
+  <circle cx="256" cy="256" r="204" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1.5"/>
+  <circle cx="256" cy="256" r="188" fill="none" stroke="rgba(0,0,0,0.5)" stroke-width="2"/>
+  <circle cx="256" cy="256" r="172" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1.5"/>
+  <circle cx="256" cy="256" r="156" fill="none" stroke="rgba(0,0,0,0.6)" stroke-width="2"/>
+  <circle cx="256" cy="256" r="140" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1.5"/>
+  <circle cx="256" cy="256" r="124" fill="none" stroke="rgba(0,0,0,0.7)" stroke-width="2"/>
+  <circle cx="256" cy="256" r="110" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1.5"/>
+
+  <!-- Reflection Sheen Overlay -->
+  <circle cx="256" cy="256" r="250" fill="url(#sheen)" style="mix-blend-mode: overlay;"/>
+
+  <!-- Center Paper Label -->
+  <circle cx="256" cy="256" r="94" fill="url(#centerLabel)" stroke="#f5f0f0" stroke-width="1.5" stroke-opacity="0.35"/>
+  <circle cx="256" cy="256" r="84" fill="none" stroke="#f5f0f0" stroke-width="0.7" stroke-dasharray="3 3" stroke-opacity="0.4"/>
+
+  <!-- Center Label Typography & Logo -->
+  <text x="256" y="202" text-anchor="middle" fill="#f5f0f0" font-family="'Inter', -apple-system, sans-serif" font-size="16" font-weight="900" letter-spacing="3">LIKE THAT</text>
+  <text x="256" y="222" text-anchor="middle" fill="rgba(245,240,240,0.85)" font-family="'Inter', -apple-system, sans-serif" font-size="9" font-weight="700" letter-spacing="1.5">FUTURE • METRO BOOMIN</text>
+  <text x="256" y="238" text-anchor="middle" fill="rgba(245,240,240,0.5)" font-family="'Inter', -apple-system, sans-serif" font-size="8" letter-spacing="1">WE DON'T TRUST YOU</text>
+  
+  <circle cx="256" cy="256" r="18" fill="#080002" stroke="#f5f0f0" stroke-width="1" stroke-opacity="0.5"/>
+  
+  <text x="256" y="294" text-anchor="middle" fill="#f5f0f0" font-family="'Inter', -apple-system, sans-serif" font-size="11" font-weight="700" letter-spacing="2.5">SIDE A</text>
+  <text x="256" y="312" text-anchor="middle" fill="rgba(245,240,240,0.5)" font-family="'Inter', -apple-system, sans-serif" font-size="8.5" letter-spacing="1.2">STEREO • 33⅓ RPM</text>
+
+  <!-- Spindle Hole -->
+  <circle cx="256" cy="256" r="10" fill="#000000" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+</svg>

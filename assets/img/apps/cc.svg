@@ -1,0 +1,12 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <rect width="120" height="120" rx="26" fill="#111114" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+  <g transform="translate(60,60)">
+    <!-- Top Trapezoid -->
+    <path d="M-32,-26 L0,-3 L32,-26 L22,-36 L-22,-36 Z" fill="#ffffff"/>
+    <!-- Bottom Trapezoid -->
+    <path d="M-32,26 L0,3 L32,26 L22,36 L-22,36 Z" fill="#ffffff"/>
+    <!-- Center accents -->
+    <circle cx="-16" cy="0" r="6" fill="#00e5ff"/>
+    <circle cx="16" cy="0" r="6" fill="#ff0055"/>
+  </g>
+</svg>
